@@ -2,7 +2,7 @@ import csv
 import constant
 from collections import defaultdict
 
-infile = open('bookings-corrected.csv', mode='r')
+infile = open('bookings.csv', mode='r')
 reader = csv.reader(infile)
 
 bookings_dict = {header: [] for header in constant.DESIRED_HEADERS}
@@ -35,7 +35,6 @@ def remove_duplicates(input_dict, key_fields):
         if row not in seen_entries:
             seen_entries.add(row)
             for header, value in zip(input_dict.keys(), row):
-                print('header ', header, 'value ', value)
                 if header in unique_dict:
                     unique_dict[header].append(value)
 
