@@ -27,6 +27,24 @@ def calculate_salary_based_on_appointment_type(appointment_name):
     return total_value
 
 
+def remove_duplicates(input_dict, key_fields):
+    seen_entries = set()
+    unique_dict = {header: [] for header in input_dict.keys()}
+
+    for row in zip(*input_dict.values()):
+        if row not in seen_entries:
+            seen_entries.add(row)
+            for header, value in zip(input_dict.keys(), row):
+                print('header ', header, 'value ', value)
+                if header in unique_dict:
+                    unique_dict[header].append(value)
+
+    return unique_dict
+
+
+bookings_dict = remove_duplicates(
+    bookings_dict, ["Team Member Name", "Appointment Time"])
+
 new_dict = defaultdict(float)  # Use float as the default type for total values
 
 for team_member, duration, appointment_name in zip(
